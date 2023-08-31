@@ -24,14 +24,14 @@ public class PlayerMovement : MonoBehaviour
 
         movement = new Vector2(horizontalMovement, verticalMovement).normalized;
         
-    }
-
-    private void FixedUpdate() {
         hit = Physics2D.BoxCast(transform.position, collider.size, 0, new Vector2(0, movement.y), Mathf.Abs(movement.y * speed * Time.deltaTime), collisionLayers);
         if ( hit.collider == null ) transform.Translate(0, movement.y * speed * Time.deltaTime, 0);
         hit = Physics2D.BoxCast(transform.position, collider.size, 0, new Vector2(movement.x, 0), Mathf.Abs(movement.x * speed * Time.deltaTime), collisionLayers);
         Debug.Log(hit.point);
         if ( hit.collider == null ) transform.Translate(movement.x * speed * Time.deltaTime, 0, 0);
+    }
+
+    private void FixedUpdate() {
     }
 
 }
