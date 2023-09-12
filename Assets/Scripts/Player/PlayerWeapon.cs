@@ -24,10 +24,10 @@ public class PlayerWeapon : MonoBehaviour
                 target = getClosestEnemy(detection);
             }
         } else {
-            // TODO: Arreglar
-            // Vector3 mousePosition = Input.mousePosition;
-            // mousePosition.z = Camera.main.nearClipPlane;
-            // target = Camera.main.ScreenToWorldPoint(mousePosition);
+            Camera camera = Camera.main;
+
+            Vector3 mousePosition = Input.mousePosition;
+            target = camera.ScreenToWorldPoint(mousePosition) - new Vector3(0, 0, camera.transform.position.z);
         }
 
         transform.up = target - transform.position;
