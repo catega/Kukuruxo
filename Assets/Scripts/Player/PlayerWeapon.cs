@@ -24,10 +24,7 @@ public class PlayerWeapon : MonoBehaviour
                 target = getClosestEnemy(detection);
             }
         } else {
-            Camera camera = Camera.main;
-
-            Vector3 mousePosition = Input.mousePosition;
-            target = camera.ScreenToWorldPoint(mousePosition) - new Vector3(0, 0, camera.transform.position.z);
+            target = Utils.GetMousePosition();
         }
 
         transform.up = target - transform.position;
@@ -50,7 +47,7 @@ public class PlayerWeapon : MonoBehaviour
     }
 
     private void OnDrawGizmos() {
-        Gizmos.color = detection.Length > 0 ? Color.red : Color.green;
+        Gizmos.color = detection?.Length > 0 ? Color.red : Color.green;
         Gizmos.DrawWireSphere(transform.position, detectionRadius);    
     }
 }
